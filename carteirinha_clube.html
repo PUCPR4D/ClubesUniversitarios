@@ -1,8 +1,7 @@
 <div class="container">
 
-<!-- TELA 1: FORMULÁRIO -->
 <div id="telaForm">
-<h1>Sua carteirinha do clube</h1>
+<h1 class="titulo">Sua carteirinha do clube</h1>
 <p class="sub">Participe, conecte-se e faça parte dessa história.</p>
 <p class="cta">Responda rapidinho e garanta a sua!</p>
 
@@ -20,171 +19,168 @@
 </div>
 </div>
 
+<div class="card">
+<label>3. O protagonismo estudantil significa:</label>
+<div class="opcoes" id="q3">
+<button onclick="verificar(this,3,'A')">Apenas ouvinte</button>
+<button onclick="verificar(this,3,'B')">Cumprir tarefas</button>
+<button onclick="verificar(this,3,'C')">Atuar ativamente</button>
+</div>
+</div>
+
+<div class="card">
+<label>4. Como você vivencia o clube?</label>
+<div class="opcoes" id="q4">
+<button onclick="verificar(this,4,'A')">Leituras</button>
+<button onclick="verificar(this,4,'B')">Interações e encontros</button>
+<button onclick="verificar(this,4,'C')">Provas</button>
+</div>
+</div>
+
+<div class="card">
+<label>5. Quando recebe horas?</label>
+<div class="opcoes" id="q5">
+<button onclick="verificar(this,5,'A')">Tudo obrigatório</button>
+<button onclick="verificar(this,5,'B')">Nota mínima</button>
+<button onclick="verificar(this,5,'C')">75% participação</button>
+</div>
+</div>
+
+<div class="card">
+<label>6. Por que fora do horário?</label>
+<div class="opcoes" id="q6">
+<button onclick="verificar(this,6,'A')">Aumentar carga</button>
+<button onclick="verificar(this,6,'B')">Substituir disciplina</button>
+<button onclick="verificar(this,6,'C')">Evitar conflitos</button>
+</div>
+</div>
+
 <button class="gerar" onclick="validar()">Gerar minha carteirinha →</button>
 </div>
 
-<!-- TELA 2: CARTEIRINHA -->
 <div id="telaCarteirinha" style="display:none;">
 <h2>Sua carteirinha está pronta!</h2>
 
 <div class="carteirinha">
-
-<!-- LADO ESQUERDO -->
 <div class="lado-esquerdo">
-<img src="https://raw.githubusercontent.com/PUCPR4D/SistemasWebSeguros/main/logo_pucpr_rgb.png" 
-alt="Logo PUCPR" 
-class="logo">
+<img src="https://raw.githubusercontent.com/PUCPR4D/SistemasWebSeguros/main/logo_pucpr_rgb.png" class="logo">
 </div>
 
-<!-- LADO DIREITO -->
 <div class="lado-direito">
 <p class="membro">Membro do Clube</p>
-
 <p><strong>Nome:</strong> <span id="nomeCarteira"></span></p>
 <p><strong>Motivação:</strong> <span id="motivacao"></span></p>
 </div>
-
 </div>
 
 <button class="voltar" onclick="voltar()">← Voltar</button>
-
 </div>
+
 </div>
 
 <style>
-body {
-font-family: Arial;
-background: #f5f5f5;
-}
+body { font-family: Arial; background:#f5f5f5; }
+.container { max-width:500px; margin:auto; text-align:center; }
 
-.container {
-max-width: 500px;
-margin: auto;
-text-align: center;
-}
+.titulo { color:#6D64AE; }
+.cta { color:#6D64AE; font-weight:bold; }
+.sub { color:#555; }
 
-h1 {
-color: #5e4ea1;
-}
+.card { background:white; padding:15px; margin:15px 0; border-radius:10px; text-align:left; }
 
-.sub {
-color: #555;
-}
-
-.cta {
-color: #7a6ac9;
-font-weight: bold;
-}
-
-.card {
-background: white;
-padding: 15px;
-margin: 15px 0;
-border-radius: 10px;
-text-align: left;
-}
-
-input {
-width: 100%;
-padding: 10px;
-margin-top: 10px;
-border-radius: 8px;
-border: 1px solid #ccc;
-}
-
-.opcoes {
-display: flex;
-gap: 10px;
-margin-top: 10px;
-}
+.opcoes { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
 
 .opcoes button {
-flex: 1;
-padding: 10px;
-border-radius: 10px;
-border: 1px solid #ccc;
-background: #fafafa;
-cursor: pointer;
+padding:10px;
+border-radius:10px;
+border:1px solid #ccc;
+background:#fafafa;
+cursor:pointer;
+transition:0.2s;
+}
+
+/* ✅ NOVO DESTAQUE TOTAL */
+.correta {
+background:#28a745 !important;
+color:white !important;
+border:none !important;
+transform: scale(1.02);
+}
+
+.incorreta {
+background:#dc3545 !important;
+color:white !important;
+border:none !important;
+transform: scale(1.02);
 }
 
 .gerar {
-background: #e54878;
-color: white;
-border: none;
-padding: 12px;
-width: 100%;
-border-radius: 10px;
-cursor: pointer;
-font-weight: bold;
+background:#e54878;
+color:white;
+padding:12px;
+border:none;
+width:100%;
+border-radius:10px;
 }
 
-/* CARTEIRINHA */
 .carteirinha {
-display: flex;
-margin-top: 20px;
-border-radius: 15px;
-overflow: hidden;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-background: #6D64AE;
+display:flex;
+background:#6D64AE;
+border-radius:15px;
+margin-top:20px;
 }
 
-/* LADO ESQUERDO */
-.lado-esquerdo {
-width: 35%;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 20px;
-border-right: 2px solid rgba(255,255,255,0.2);
-}
+.lado-esquerdo { width:35%; display:flex; align-items:center; justify-content:center; }
+.logo { width:100%; filter:brightness(0) invert(1); }
 
-/* LOGO BRANCA */
-.logo {
-width: 100%;
-max-height: 180px;
-object-fit: contain;
-filter: brightness(0) invert(1);
-}
+.lado-direito { color:white; padding:20px; width:65%; }
+.membro { color:#DB5284; font-weight:bold; }
 
-/* LADO DIREITO */
-.lado-direito {
-padding: 20px;
-width: 65%;
-text-align: left;
-color: white;
-}
-
-/* DESTAQUE */
-.membro {
-font-weight: bold;
-color: #DB5284;
-margin-bottom: 12px;
-font-size: 16px;
-}
-
-/* BOTÃO */
-.voltar {
-margin-top: 20px;
-padding: 10px;
-border: none;
-background: #ccc;
-border-radius: 8px;
-cursor: pointer;
-}
+.voltar { margin-top:20px; padding:10px; background:#ccc; border:none; border-radius:8px; }
 </style>
 
 <script>
 let motivacaoEscolhida = "";
 
-function responder(opcao) {
+const gabarito = {
+3:'C',
+4:'B',
+5:'C',
+6:'C'
+};
+
+function responder(opcao){
 motivacaoEscolhida = opcao;
 }
 
-function validar() {
+function verificar(botao, pergunta, resposta){
+
+let container = document.getElementById("q"+pergunta);
+
+if(container.classList.contains("respondido")) return;
+
+container.classList.add("respondido");
+
+let botoes = container.querySelectorAll("button");
+
+botoes.forEach(btn=>{
+let letra = btn.getAttribute("onclick").match(/'(.*?)'\)/)[1];
+
+if(letra === gabarito[pergunta]){
+btn.classList.add("correta");
+}
+
+if(btn === botao && letra !== gabarito[pergunta]){
+btn.classList.add("incorreta");
+}
+});
+}
+
+function validar(){
 let nome = document.getElementById("nome").value;
 
-if (nome === "" || motivacaoEscolhida === "") {
-alert("Preencha seu nome e escolha uma opção 😉");
+if(nome === "" || motivacaoEscolhida === ""){
+alert("Preencha seu nome e a motivação 😉");
 return;
 }
 
@@ -195,7 +191,7 @@ document.getElementById("telaForm").style.display = "none";
 document.getElementById("telaCarteirinha").style.display = "block";
 }
 
-function voltar() {
+function voltar(){
 document.getElementById("telaForm").style.display = "block";
 document.getElementById("telaCarteirinha").style.display = "none";
 }
