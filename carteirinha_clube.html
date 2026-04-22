@@ -1,0 +1,202 @@
+<div class="container">
+
+<!-- TELA 1: FORMULÁRIO -->
+<div id="telaForm">
+<h1>Sua carteirinha do clube</h1>
+<p class="sub">Participe, conecte-se e faça parte dessa história.</p>
+<p class="cta">Responda rapidinho e garanta a sua!</p>
+
+<div class="card">
+<label>1. Qual seu nome?</label>
+<input type="text" id="nome" placeholder="Digite seu nome">
+</div>
+
+<div class="card">
+<label>2. O que mais te motiva a participar do clube?</label>
+<div class="opcoes">
+<button onclick="responder('Trocar ideias')">💬 Trocar ideias</button>
+<button onclick="responder('Aprender na prática')">🚀 Aprender na prática</button>
+<button onclick="responder('Conhecer pessoas')">👥 Conhecer pessoas</button>
+</div>
+</div>
+
+<button class="gerar" onclick="validar()">Gerar minha carteirinha →</button>
+</div>
+
+<!-- TELA 2: CARTEIRINHA -->
+<div id="telaCarteirinha" style="display:none;">
+<h2>Sua carteirinha está pronta!</h2>
+
+<div class="carteirinha">
+
+<!-- LADO ESQUERDO -->
+<div class="lado-esquerdo">
+<img src="https://raw.githubusercontent.com/PUCPR4D/SistemasWebSeguros/main/logo_pucpr_rgb.png" 
+alt="Logo PUCPR" 
+class="logo">
+</div>
+
+<!-- LADO DIREITO -->
+<div class="lado-direito">
+<p class="membro">Membro do Clube</p>
+
+<p><strong>Nome:</strong> <span id="nomeCarteira"></span></p>
+<p><strong>Motivação:</strong> <span id="motivacao"></span></p>
+</div>
+
+</div>
+
+<button class="voltar" onclick="voltar()">← Voltar</button>
+
+</div>
+</div>
+
+<style>
+body {
+font-family: Arial;
+background: #f5f5f5;
+}
+
+.container {
+max-width: 500px;
+margin: auto;
+text-align: center;
+}
+
+h1 {
+color: #5e4ea1;
+}
+
+.sub {
+color: #555;
+}
+
+.cta {
+color: #7a6ac9;
+font-weight: bold;
+}
+
+.card {
+background: white;
+padding: 15px;
+margin: 15px 0;
+border-radius: 10px;
+text-align: left;
+}
+
+input {
+width: 100%;
+padding: 10px;
+margin-top: 10px;
+border-radius: 8px;
+border: 1px solid #ccc;
+}
+
+.opcoes {
+display: flex;
+gap: 10px;
+margin-top: 10px;
+}
+
+.opcoes button {
+flex: 1;
+padding: 10px;
+border-radius: 10px;
+border: 1px solid #ccc;
+background: #fafafa;
+cursor: pointer;
+}
+
+.gerar {
+background: #e54878;
+color: white;
+border: none;
+padding: 12px;
+width: 100%;
+border-radius: 10px;
+cursor: pointer;
+font-weight: bold;
+}
+
+/* CARTEIRINHA */
+.carteirinha {
+display: flex;
+margin-top: 20px;
+border-radius: 15px;
+overflow: hidden;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+background: #6D64AE;
+}
+
+/* LADO ESQUERDO */
+.lado-esquerdo {
+width: 35%;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+border-right: 2px solid rgba(255,255,255,0.2);
+}
+
+/* LOGO BRANCA */
+.logo {
+width: 100%;
+max-height: 180px;
+object-fit: contain;
+filter: brightness(0) invert(1);
+}
+
+/* LADO DIREITO */
+.lado-direito {
+padding: 20px;
+width: 65%;
+text-align: left;
+color: white;
+}
+
+/* DESTAQUE */
+.membro {
+font-weight: bold;
+color: #DB5284;
+margin-bottom: 12px;
+font-size: 16px;
+}
+
+/* BOTÃO */
+.voltar {
+margin-top: 20px;
+padding: 10px;
+border: none;
+background: #ccc;
+border-radius: 8px;
+cursor: pointer;
+}
+</style>
+
+<script>
+let motivacaoEscolhida = "";
+
+function responder(opcao) {
+motivacaoEscolhida = opcao;
+}
+
+function validar() {
+let nome = document.getElementById("nome").value;
+
+if (nome === "" || motivacaoEscolhida === "") {
+alert("Preencha seu nome e escolha uma opção 😉");
+return;
+}
+
+document.getElementById("nomeCarteira").innerText = nome;
+document.getElementById("motivacao").innerText = motivacaoEscolhida;
+
+document.getElementById("telaForm").style.display = "none";
+document.getElementById("telaCarteirinha").style.display = "block";
+}
+
+function voltar() {
+document.getElementById("telaForm").style.display = "block";
+document.getElementById("telaCarteirinha").style.display = "none";
+}
+</script>
